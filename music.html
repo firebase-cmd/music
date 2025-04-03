@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Playlist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            background-color: #181818;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-top: 50px;
+            padding-bottom: 40px; 
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .navbar:hover{
+            text-decoration: underline;
+        }
+
+        .playlist-container {
+            width: 90%;
+            max-width: 400px;
+            background-color: #282828;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 60px auto 0;
+        }
+
+        .playlist-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            border-bottom: 2px solid gray;
+        }
+
+        .playlist-item:hover {
+            background-color: #3d3d3d;
+        }
+
+        .video-box {
+            width: 100px;
+            height: 60px;
+            border-radius: 5px;
+            margin-right: 10px;
+            background: black;
+            position: relative;
+        }
+
+        .video-details {
+            flex-grow: 1;
+        }
+
+        .title {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .title:hover{
+            text-decoration: underline;
+        }
+
+        .channel {
+            font-size: 12px;
+            color: #aaa;
+        }
+        .channel:hover{
+            text-decoration: underline;
+        }
+
+        .video-controls {
+            display: none;
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(50, 50, 50, 0.8);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .video-controls button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .footer:hover{
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">Songs Playlist</div>
+    <div class="playlist-container">
+        <div class="playlist-item" onclick="playVideo(this, 'music/song1.mp4')">
+            <video class="video-box" muted></video>
+            <div class="video-details">
+                <div class="title">Song 1</div>
+                <div class="channel">Mai ne roya</div>
+            </div>
+            <div class="video-controls">
+                <button onclick="togglePlayPause(event, this)"><i class="fas fa-play"></i></button>
+                <button onclick="seekForward(event, this)"><i class="fas fa-forward"></i></button>
+            </div>
+        </div>
+        <div class="playlist-item" onclick="playVideo(this, 'music/song2.mp4')">
+            <video class="video-box" muted></video>
+            <div class="video-details">
+                <div class="title">Song 2</div>
+                <div class="channel">1920 Evil Return</div>
+            </div>
+            <div class="video-controls">
+                <button onclick="togglePlayPause(event, this)"><i class="fas fa-play"></i></button>
+                <button onclick="seekForward(event, this)"><i class="fas fa-forward"></i></button>
+            </div>
+        </div>
+        <div class="playlist-item" onclick="playVideo(this, 'music/song3.mp4')">
+            <video class="video-box" muted></video>
+            <div class="video-details">
+                <div class="title">Song 3</div>
+                <div class="channel">Lo man liya hamne</div>
+            </div>
+            <div class="video-controls">
+                <button onclick="togglePlayPause(event, this)"><i class="fas fa-play"></i></button>
+                <button onclick="seekForward(event, this)"><i class="fas fa-forward"></i></button>
+            </div>
+        </div>
+        <div class="playlist-item" onclick="playVideo(this, 'music/song4.mp4')">
+            <video class="video-box" muted></video>
+            <div class="video-details">
+                <div class="title">Song 4</div>
+                <div class="channel">User 5</div>
+            </div>
+            <div class="video-controls">
+                <button onclick="togglePlayPause(event, this)"><i class="fas fa-play"></i></button>
+                <button onclick="seekForward(event, this)"><i class="fas fa-forward"></i></button>
+            </div>
+        </div>
+        <div class="playlist-item" onclick="playVideo(this, 'music/song5.mp4')">
+            <video class="video-box" muted></video>
+            <div class="video-details">
+                <div class="title">Song 5</div>
+                <div class="channel">User 6</div>
+            </div>
+            <div class="video-controls">
+                <button onclick="togglePlayPause(event, this)"><i class="fas fa-play"></i></button>
+                <button onclick="seekForward(event, this)"><i class="fas fa-forward"></i></button>
+            </div>
+        </div>
+        <div class="playlist-item" onclick="playVideo(this, 'music/song6.mp4')">
+            <video class="video-box" muted></video>
+            <div class="video-details">
+                <div class="title">Song 6</div>
+                <div class="channel">User 6</div>
+            </div>
+            <div class="video-controls">
+                <button onclick="togglePlayPause(event, this)"><i class="fas fa-play"></i></button>
+                <button onclick="seekForward(event, this)"><i class="fas fa-forward"></i></button>
+            </div>
+        </div>
+        <div class="playlist-item" onclick="playVideo(this, 'music/song7.mp4')">
+            <video class="video-box" muted></video>
+            <div class="video-details">
+                <div class="title">Song 7</div>
+                <div class="channel">User 7</div>
+            </div>
+            <div class="video-controls">
+                <button onclick="togglePlayPause(event, this)"><i class="fas fa-play"></i></button>
+                <button onclick="seekForward(event, this)"><i class="fas fa-forward"></i></button>
+            </div>
+        </div>
+        <div class="playlist-item" onclick="playVideo(this, 'music/song8.mp4')">
+            <video class="video-box" muted></video>
+            <div class="video-details">
+                <div class="title">Song 8</div>
+                <div class="channel">User 8</div>
+            </div>
+            <div class="video-controls">
+                <button onclick="togglePlayPause(event, this)"><i class="fas fa-play"></i></button>
+                <button onclick="seekForward(event, this)"><i class="fas fa-forward"></i></button>
+            </div>
+        </div>
+        <div class="playlist-item" onclick="playVideo(this, 'music/song9.mp4')">
+            <video class="video-box" muted></video>
+            <div class="video-details">
+                <div class="title">Song 9</div>
+                <div class="channel">User 9</div>
+            </div>
+            <div class="video-controls">
+                <button onclick="togglePlayPause(event, this)"><i class="fas fa-play"></i></button>
+                <button onclick="seekForward(event, this)"><i class="fas fa-forward"></i></button>
+            </div>
+        </div>
+        <div class="playlist-item" onclick="playVideo(this, 'music/song10.mp4')">
+            <video class="video-box" muted></video>
+            <div class="video-details">
+                <div class="title">Song 10</div>
+                <div class="channel">User 10</div>
+            </div>
+            <div class="video-controls">
+                <button onclick="togglePlayPause(event, this)"><i class="fas fa-play"></i></button>
+                <button onclick="seekForward(event, this)"><i class="fas fa-forward"></i></button>
+            </div>
+        </div>
+        <div class="playlist-item" onclick="playVideo(this, 'music/song11.mp4')">
+            <video class="video-box" muted></video>
+            <div class="video-details">
+                <div class="title">Song 11</div>
+                <div class="channel">Happy Asmara</div>
+            </div>
+            <div class="video-controls">
+                <button onclick="togglePlayPause(event, this)"><i class="fas fa-play"></i></button>
+                <button onclick="seekForward(event, this)"><i class="fas fa-forward"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="footer">© Rose Video Playlist</div>
+    <script>
+        function playVideo(element, videoSrc) {
+            let video = element.querySelector('.video-box');
+            let controls = element.querySelector('.video-controls');
+
+            document.querySelectorAll('.video-box').forEach(v => {
+                if (v !== video) {
+                    v.pause();
+                    v.currentTime = 0;
+                    v.closest('.playlist-item').querySelector('.video-controls').style.display = 'none';
+                }
+            });
+
+            video.src = videoSrc;
+            video.muted = false;
+            video.play();
+            controls.style.display = 'flex';
+        }
+
+        function togglePlayPause(event, button) {
+            event.stopPropagation();
+            let video = button.closest('.playlist-item').querySelector('.video-box');
+            if (video.paused) {
+                video.play();
+                button.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                video.pause();
+                button.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        }
+
+        function seekForward(event, button) {
+            event.stopPropagation();
+            let video = button.closest('.playlist-item').querySelector('.video-box');
+            video.currentTime += 5;
+        }
+    </script>
+</body>
+
+</html>
